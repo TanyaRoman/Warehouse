@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение Приходной накладной{% endblock %}
+
+{% block content %}
+
+    <h2>Изменение Приходной накладной</h2>
+    <p>Измените необходимую информацию</p>
+
+{#    <form action="" method="post">{% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{#    <input type="submit" value="Update" />#}
+{#    </form>#}
+
+        <form method="POST" action="">
+        {% csrf_token %}
+            {{ form.as_p }}
+{#            <p>#}
+{#                <label>Дата</label><br>#}
+{#                <input type="text" name="date" value="{{purchase.date}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Количество</label><br>#}
+{#                <input type="text" name="quantity" value="{{purchase.quantity}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>ID товата</label><br>#}
+{#                <input type="text" name="goods_id" value="{{purchase.goods_id}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>ID менежера</label><br>#}
+{#                <input type="text" name="manager_id" value="{{purchase.manager_id}}" />#}
+{#            </p>#}
+
+            <button type="submit">Изменить</button>
+        </form>
+
+        <form method="POST" action="{% url 'write_off_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр Приходной накладной{{ write_off.name }}{% endblock %}
+
+{% block content %}
+
+    <h2>{{ write_off.date }}</h2>
+    <p>{{ write_off.quantity }}</p>
+    <p>{{ write_off.goods_id }}</p>
+    <p>{{ write_off.manager_id }}</p>
+
+{#    <form method="POST" action="{% url 'purchase_url:purchase_change_view' purchase.id%}">#}
+    <form method="POST" action="{% url 'write_off_url:WriteOffUpdate' write_off.id%}">
+        {% csrf_token %}
+        <button type="submit">Изменить данные</button>
+    </form>
+
+    <form method="POST" action="{% url 'write_off_url:write_off_delete_view' write_off.id%}">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Удалить</button>
+    </form>
+
+    <form method="POST" action="{% url 'write_off_url:back' %}">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Назад</button>
+    </form>
+
+{% endblock %}

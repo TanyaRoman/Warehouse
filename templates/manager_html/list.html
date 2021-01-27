@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Последние поставки{% endblock %}
+
+{% block content %}
+
+    {% if manager_list %}
+
+        <h2>Менежеры</h2>
+
+        <table>
+        <tr>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Отчество</td>
+        </tr>
+        {% for a in manager_list %}
+            <tr>
+                <td><a href="{% url 'manager_url:manager_detail_view' a.id %}">{{a.surname}}</a></td>
+                <td><a href="{% url 'manager_url:manager_detail_view' a.id %}">{{a.name}}</a></td>
+                <td><a href="{% url 'manager_url:manager_detail_view' a.id %}">{{a.name_second}}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <form method="post" action="{% url 'manager_url:manager_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'manager_url:home' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+    {% else %}
+        Менеджера не найдены Т_Т
+        <form method="post" action="{% url 'manager_url:manager_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'manager_url:home' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

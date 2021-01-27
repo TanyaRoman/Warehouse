@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение товара{% endblock %}
+
+{% block content %}
+
+    <h2>Изменение Менеджера</h2>
+    <p>Измените необходимую информацию</p>
+
+{#    <form action="" method="post">{% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{#    <input type="submit" value="Update" />#}
+{#    </form>#}
+
+        <form method="POST" action="">
+        {% csrf_token %}
+            {{ form.as_p }}
+{#            <p>#}
+{#                <label>Фамилия</label><br>#}
+{#                <input type="text" name="surname" value="{{manager.surname}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Имя</label><br>#}
+{#                <input type="text" name="name" value="{{manager.name}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Отчество</label><br>#}
+{#                <input type="text" name="name_second" value="{{manager.name_second}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Дата рождения</label><br>#}
+{#                <input type="text" name="date_of_birth" value="{{manager.date_of_birth}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Адрес</label><br>#}
+{#                <input type="text" name="address" value="{{manager.address}}" />#}
+{#            </p>#}
+{##}
+{#            <p>#}
+{#                <label>Дата принятия на работу</label><br>#}
+{#                <input type="text" name="data_of_hiring" value="{{manager.data_of_hiring}}" />#}
+{#            </p>#}
+
+            <button type="submit">Изменить</button>
+        </form>
+
+        <form method="POST" action="{% url 'manager_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+{% endblock %}

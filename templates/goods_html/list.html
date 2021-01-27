@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Последние поставки{% endblock %}
+
+{% block content %}
+
+    {% if goods_list %}
+
+        <h2>Товары</h2>
+
+        <table>
+        <tr>
+            <td>Наименование товара</td>
+            <td>Категория</td>
+            <td>Доступное количество</td>
+            <td>Цена</td>
+        </tr>
+        {% for a in goods_list %}
+            <tr>
+{#                <td>{{ a }}</td>#}
+                <td><a href="{% url 'goods_url:goods_detail_view' a.id %}">{{a.name}}</a></td>
+{#                <td><a href="{% url 'goods_url:goods_detail_view' a.id %}">{{a.category}}</a></td>#}
+{#                <td><a href="{% url 'goods_url:goods_detail_view' a.id %}">{{a.count}}</a></td>#}
+{#                <td><a href="{% url 'goods_url:goods_detail_view' a.id %}">{{a.prise}}</a></td>#}
+                <td>{{a.category}}</td>
+                <td>{{a.count}}</td>
+                <td>{{a.prise}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <form method="post" action="{% url 'goods_url:goods_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'goods_url:home' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+    {% else %}
+        Товары не найдены Т_Т
+        <form method="post" action="{% url 'goods_url:goods_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'goods_url:home' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+    {% endif %}
+
+{% endblock %}

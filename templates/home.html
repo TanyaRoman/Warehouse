@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Возвращение{% endblock %}
+
+{% block content %}
+
+    <h2>Таблицы доступные к просмотру</h2>
+
+{#        <table>#}
+{#        {% for a in '2'|make_list %}#}
+            <tr>
+{#                <td>{{ a }}</td>#}
+
+                <p><a href="{% url 'goods_url:goods_list_view'%}">Товары</a></p>
+                <p><a href="{% url 'manager_url:manager_list_view'%}">Сотрудники</a></p>
+                <p><a href="{% url 'purchase_url:purchase_list_view'%}">Приходные накладные</a></p>
+                <p><a href="{% url 'write_off_url:write_off_list_view'%}">Расходные накладные</a></p>
+{#                <p><a href="{% url 'delivery_url:delivery_list_view'%}">Накладные на выдачу</a></p>#}
+
+{#                <td>{{a.category}}</td>#}
+{#                <td>{{a.count}}</td>#}
+{#                <td>{{a.prise}}</td>#}
+            </tr>
+{#        {% endfor %}#}
+        </table>
+
+
+{#        <form action="{% url 'warehouse:back' %} }">#}
+{#        <button type="submit">Назад</button>#}
+{#        </form>#}
+
+
+{% endblock %}

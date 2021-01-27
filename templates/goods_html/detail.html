@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр товара {{ goods.name }}{% endblock %}
+
+{% block content %}
+
+    <h2>{{ goods.name }}</h2>
+    <p>{{ goods.category }}</p>
+    <p>Доступно в количестве {{ goods.count }}</p>
+    <p>Цена {{ goods.prise }}</p>
+
+{#    <form method="POST" action="{% url 'goods_url:goods_change_view' goods.id%}">#}
+    <form method="POST" action="{% url 'goods_url:GoodsUpdate' goods.id%}">
+        {% csrf_token %}
+        <button type="submit">Изменить данные</button>
+    </form>
+
+    <form method="POST" action="{% url 'goods_url:goods_delete_view' goods.id%}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Удалить товар</button>
+    </form>
+
+    <form method="POST" action="{% url 'goods_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Назад</button>
+    </form>
+
+{% endblock %}

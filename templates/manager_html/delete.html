@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Удален менеджер{% endblock %}
+
+{% block content %}
+
+    <h2>Менеджер удален</h2>
+
+{#        <form method="POST" action="">#}
+{#        {% csrf_token %}#}
+{#            {{ form.as_p }}#}
+{#            <button type="submit">Создать</button>#}
+{#        </form>#}
+
+        <form method="POST" action="{% url 'manager_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+{% endblock %}

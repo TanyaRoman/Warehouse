@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр Приходной накладной{{ purchase.name }}{% endblock %}
+
+{% block content %}
+
+    <h2>{{ purchase.date }}</h2>
+    <p>{{ purchase.quantity }}</p>
+    <p>{{ purchase.goods_id }}</p>
+    <p>{{ purchase.manager_id }}</p>
+
+{#    <form method="POST" action="{% url 'purchase_url:purchase_change_view' purchase.id%}">#}
+    <form method="POST" action="{% url 'purchase_url:PurchaseUpdate' purchase.id%}">
+        {% csrf_token %}
+        <button type="submit">Изменить данные</button>
+    </form>
+
+    <form method="POST" action="{% url 'purchase_url:purchase_delete_view' purchase.id%}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Удалить</button>
+    </form>
+
+    <form method="POST" action="{% url 'purchase_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Назад</button>
+    </form>
+
+{% endblock %}

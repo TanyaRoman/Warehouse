@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление Приходной накладной{% endblock %}
+
+{% block content %}
+
+    <h2>Приходная накладная удалена</h2>
+
+        <form method="POST" action="{% url 'purchase_url:back' %}">
+        {% csrf_token %}
+            <button type="submit">Назад</button>
+        </form>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Последние поставки{% endblock %}
+
+{% block content %}
+
+    {% if purchase_list %}
+
+        <h2>Поставки</h2>
+
+        <table>
+        <tr>
+            <td>Дата</td>
+            <td>Количество</td>
+            <td>ID товата</td>
+            <td>ID менежера</td>
+        </tr>
+        {% for a in purchase_list %}
+            <tr>
+                <td><a href="{% url 'purchase_url:purchase_detail_view' a.id %}">{{a.date}}</a></td>
+                <td><a href="{% url 'purchase_url:purchase_detail_view' a.id %}">{{a.quantity}}</a></td>
+                <td><a href="{% url 'purchase_url:purchase_detail_view' a.id %}">{{a.goods_id}}</a></td>
+                <td><a href="{% url 'purchase_url:purchase_detail_view' a.id %}">{{a.manager_id}}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <form method="post" action="{% url 'purchase_url:purchase_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'purchase_url:home' %}">
+        {% csrf_token %}
+            <button type="submit">Назад</button>
+        </form>
+
+    {% else %}
+        Накладные не найдены Т_Т
+        <form method="post" action="{% url 'purchase_url:purchase_create_view' %}" >
+            {% csrf_token %}
+            <input type="submit" class="button" value="Создать">
+        </form>
+
+        <form method="POST" action="{% url 'purchase_url:home' %}">
+        {% csrf_token %}
+            <button type="submit">Назад</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

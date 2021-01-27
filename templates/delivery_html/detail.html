@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр Приходной накладной{{ delivery.name }}{% endblock %}
+
+{% block content %}
+
+    <p>{{ delivery.quantity }}</p>
+    <p>{{ delivery.write_off_document_id }}</p>
+
+{#    <form method="POST" action="{% url 'purchase_url:purchase_change_view' purchase.id%}">#}
+    <form method="POST" action="{% url 'delivery_url:DeliveryUpdate' delivery.id%}">
+        {% csrf_token %}
+        <button type="submit">Изменить данные</button>
+    </form>
+
+    <form method="POST" action="{% url 'delivery_url:delivery_delete_view' delivery.id%}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Удалить</button>
+    </form>
+
+    <form method="POST" action="{% url 'delivery_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Назад</button>
+    </form>
+
+{% endblock %}

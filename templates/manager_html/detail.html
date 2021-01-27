@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр менеджера {{ manager.surname }}{% endblock %}
+
+{% block content %}
+
+    <p>{{ manager.surname }}</p>
+    <p>{{ manager.name }}</p>
+    <p>{{ manager.name_second }}</p>
+    <p>{{ manager.date_of_birth }}</p>
+    <p>{{ manager.address }}</p>
+    <p>{{ manager.data_of_hiring }}</p>
+
+{#    <form method="POST" action="{% url 'goods_url:goods_change_view' %}">#}
+{#        {% csrf_token %}#}
+{#        <button type="submit">Изменить данные</button>#}
+{#    </form>#}
+
+    <form method="POST" action="{% url 'manager_url:ManagerUpdate' manager.id%}">
+        {% csrf_token %}
+        <button type="submit">Изменить данные</button>
+    </form>
+
+     <form method="POST" action="{% url 'manager_url:manager_delete_view' manager.id%}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Удалить менеджера</button>
+    </form>
+
+    <form method="POST" action="{% url 'manager_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+        <button type="submit">Назад</button>
+    </form>
+
+{% endblock %}

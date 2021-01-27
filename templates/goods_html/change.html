@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение товара{% endblock %}
+
+{% block content %}
+
+    <h2>Изменение товара</h2>
+    <p>Измените необходимую информацию</p>
+
+{#    <form action="" method="post">{% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{#    <input type="submit" value="Update" />#}
+{#    </form>#}
+
+        <form method="POST" action="">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <p>
+                <label>Название</label><br>
+                <input type="text" name="name" value="{{goods.name}}" />
+            </p>
+
+            <p>
+                <label>Категория</label><br>
+                <input type="text" name="category" value="{{goods.category}}" />
+            </p>
+
+            <p>
+                <label>Количество</label><br>
+                <input type="text" name="count" value="{{goods.count}}" />
+            </p>
+
+            <p>
+                <label>Цена</label><br>
+                <input type="text" name="prise" value="{{goods.prise}}" />
+            </p>
+
+            <button type="submit">Изменить</button>
+        </form>
+
+        <form method="POST" action="{% url 'goods_url:back' %}">
+        {% csrf_token %}
+{#            {{ form.as_p }}#}
+            <button type="submit">Назад</button>
+        </form>
+
+{% endblock %}
